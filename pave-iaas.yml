@@ -3,11 +3,10 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: hashicorp/terraform, tag: light}
+  source: {repository: hashicorp/terraform, tag: full}
 
 inputs:
 - name: platform-automation-test
-- name: terraforming-aws
 outputs:
 - name: build-output
 
