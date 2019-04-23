@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: hashicorp/terraform, tag: light}
+
+inputs:
+- name: terraforming-aws
+outputs:
+- name: build-output
+
+run:
+  path: pave-iaas.sh
+  user: root

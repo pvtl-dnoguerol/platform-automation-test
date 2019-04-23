@@ -1,0 +1,1 @@
+fly -t plane set-pipeline --pipeline test-pipeline --config test-pipeline.yml --var "access_key_id=AKIAWHZTYNEETDRSASOB" --var "secret_access_key=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" --var "region=eu-central-1" --var "bucket=farb-pcf-test-bucket"

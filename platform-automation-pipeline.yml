@@ -1,0 +1,13 @@
+resources:
+- name: terraforming-aws
+  type: git
+  source:
+    uri: https://github.com/pivotal-cf/terraforming-aws
+
+jobs:
+- name: pave-iaas-job
+  plan:
+  - get: terraforming-aws
+    trigger: false
+  - task: pave-iaas-task
+    file: pave-iaas.yml
