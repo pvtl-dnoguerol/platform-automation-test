@@ -16,4 +16,4 @@ jobs:
   - get: terraforming-aws
     trigger: false
   - task: pave-iaas-task
-    file: pave-iaas.yml
+    file: platform-automation-test/pave-iaas.yml

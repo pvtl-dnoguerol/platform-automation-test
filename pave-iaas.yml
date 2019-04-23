@@ -11,5 +11,5 @@ outputs:
 - name: build-output
 
 run:
-  path: pave-iaas.sh
+  path: platform-automation-test/pave-iaas.sh
   user: root
