@@ -6,4 +6,4 @@ cd terraforming-aws/terraforming-pas
 echo "Performing terraform init\n"
 terraform init -input=false
 echo "Performing terraform apply\n"
-terraform apply -input=false
+terraform apply -input=false -auto-approve
