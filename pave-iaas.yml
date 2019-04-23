@@ -6,6 +6,7 @@ image_resource:
   source: {repository: hashicorp/terraform, tag: light}
 
 inputs:
+- name: platform-automation-test
 - name: terraforming-aws
 outputs:
 - name: build-output
