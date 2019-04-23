@@ -7,6 +7,14 @@ resources:
   type: git
   source:
     uri: https://github.com/pvtl-dnoguerol/platform-automation-test.git
+- name: terraform-tfvars-s3
+  type: s3
+  source:
+    access_key_id: ((access_key_id))
+    secret_access_key: ((secret_access_key))
+    region_name: ((region))
+    bucket: ((bucket))
+    regexp: terraform.tfvars
 
 jobs:
 - name: pave-iaas-job
@@ -14,6 +22,8 @@ jobs:
   - get: platform-automation-test
     trigger: false
   - get: terraforming-aws
+    trigger: false
+  - get: terraform-tfvars-s3
     trigger: false
   - task: pave-iaas-task
     file: platform-automation-test/pave-iaas.yml

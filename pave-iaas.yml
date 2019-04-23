@@ -8,6 +8,7 @@ image_resource:
 inputs:
 - name: platform-automation-test
 - name: terraforming-aws
+- name: terraform-tfvars-s3
 outputs:
 - name: build-output
 
