@@ -27,3 +27,5 @@ jobs:
     trigger: false
   - task: pave-iaas-task
     file: platform-automation-test/pave-iaas.yml
+  - task: create-opsman-config
+    file: platform-automation-test/create-opsman-config.yml

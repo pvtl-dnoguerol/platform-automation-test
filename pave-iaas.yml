@@ -10,7 +10,7 @@ inputs:
 - name: terraforming-aws
 - name: terraform-tfvars-s3
 outputs:
-- name: build-output
+- name: terraform-output
 
 run:
   path: platform-automation-test/pave-iaas.sh
