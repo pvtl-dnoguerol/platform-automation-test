@@ -3,10 +3,16 @@ resources:
   type: git
   source:
     uri: https://github.com/pivotal-cf/terraforming-aws
+- name: platform-automation-test
+  type: git
+  source:
+    uri: https://github.com/pvtl-dnoguerol/platform-automation-test.git
 
 jobs:
 - name: pave-iaas-job
   plan:
+  - get: platform-automation-test
+    trigger: false
   - get: terraforming-aws
     trigger: false
   - task: pave-iaas-task
