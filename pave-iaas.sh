@@ -1,3 +1,5 @@
 #!/bin/bash
 
-find . 
+cd terraforming-aws/terraforming-pas
+terraform init
+terraform apply
