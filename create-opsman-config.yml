@@ -9,7 +9,7 @@ inputs:
 - name: terraform-output
 - name: platform-automation-test
 outputs:
-- name: opsman-config
+- name: terraform-output
 
 run:
   path: platform-automation-test/create-opsman-config.sh
