@@ -23,6 +23,14 @@ resources:
     region_name: ((region))
     bucket: ((bucket))
     regexp: terraform.(.*).out
+- name: opsman-config-s3
+  type: s3
+  source:
+    access_key_id: ((access_key_id))
+    secret_access_key: ((secret_access_key))
+    region_name: ((region))
+    bucket: ((bucket))
+    regexp: opsman-config-(.*).out
 
 jobs:
 - name: pave-iaas-job
@@ -35,8 +43,11 @@ jobs:
     trigger: false
   - task: pave-iaas-task
     file: platform-automation-test/pave-iaas.yml
-  - task: create-opsman-config
-    file: platform-automation-test/create-opsman-config.yml
   - put: terraform-output-s3
     params:
-      file: opsman-output/terraform.*.out
+      file: terraform-output/terraform.*.out
+  - task: create-opsman-config
+    file: platform-automation-test/create-opsman-config.yml
+  - put: opsman-config-s3
+    params:
+      file: opsman-output/opsman-config-(.*).out      
