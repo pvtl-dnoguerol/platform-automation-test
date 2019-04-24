@@ -10,4 +10,4 @@ cd terraforming-aws/terraforming-pas
 echo "Performing terraform init"
 terraform init -input=false
 echo "Performing terraform apply"
-terraform apply -input=false -auto-approve -state=../../terraform-output/terraform.out
+terraform apply -input=false -auto-approve -state=../../terraform-output/terraform.1.0.0.out
