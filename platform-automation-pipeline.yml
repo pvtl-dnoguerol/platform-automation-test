@@ -21,7 +21,8 @@ resources:
     access_key_id: ((access_key_id))
     secret_access_key: ((secret_access_key))
     region_name: ((region))
-    bucket: ((bucket))    
+    bucket: ((bucket))
+    regexp: terraform.(.*).out
 
 jobs:
 - name: pave-iaas-job
@@ -38,4 +39,4 @@ jobs:
     file: platform-automation-test/create-opsman-config.yml
   - put: terraform-output-s3
     params:
-      file: opsman-output/terraform.out
+      file: opsman-output/terraform.1.0.0.out
