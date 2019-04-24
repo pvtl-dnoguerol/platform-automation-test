@@ -39,4 +39,4 @@ jobs:
     file: platform-automation-test/create-opsman-config.yml
   - put: terraform-output-s3
     params:
-      file: opsman-output/terraform.1.0.0.out
+      file: opsman-output/terraform.*.out
