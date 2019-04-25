@@ -94,6 +94,12 @@ for policy in j["Policies"]:
 	if policy["PolicyName"] == envname + "_ert" or policy["PolicyName"] == envname + "_ops_manager_role" or policy["PolicyName"] == envname + "_ops_manager_user":
 		subprocess.call(['aws', 'iam', 'delete-policy', '--policy-arn', policy["Arn"], "--region", region])
 
+print "Deleting S3 buckets"
+j = json.loads(subprocess.check_output(["aws", "s3api", "list-buckets", "--region", region]))
+for bucket in j["Buckets"]:
+	if bucket["Name"].startswith(envname + "-buildpacks-bucket-") or bucket["Name"].startswith(envname + "-droplets-bucket-") or bucket["Name"].startswith(envname + "-ops-manager-bucket-") or bucket["Name"].startswith(envname + "-resources-bucket-") or bucket["Name"].startswith(envname + "-packages-bucket-"):
+		subprocess.call(['aws', 's3api', 'delete-bucket', '--bucket', bucket["Name"], "--region", region])
+
 print "Deleting VPCs"
 j = json.loads(subprocess.check_output(["aws", "ec2", "describe-vpcs", "--filters", "Name=tag:Environment,Values=" + envname, "--region", region]))
 for subnet in j["Vpcs"]:
