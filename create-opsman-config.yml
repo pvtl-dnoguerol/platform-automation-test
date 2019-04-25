@@ -13,3 +13,4 @@ outputs:
 
 run:
   path: platform-automation-test/create-opsman-config.sh
+  user: root
