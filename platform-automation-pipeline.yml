@@ -50,4 +50,5 @@ jobs:
     file: platform-automation-test/create-opsman-config.yml
   - put: opsman-config-s3
     params:
-      file: opsman-output/opsman-config-(.*).yml      
+      file: opsman-output/opsman-config-*.yml
+   
