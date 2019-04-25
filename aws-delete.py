@@ -100,6 +100,16 @@ for bucket in j["Buckets"]:
 	if bucket["Name"].startswith(envname + "-buildpacks-bucket-") or bucket["Name"].startswith(envname + "-droplets-bucket-") or bucket["Name"].startswith(envname + "-ops-manager-bucket-") or bucket["Name"].startswith(envname + "-resources-bucket-") or bucket["Name"].startswith(envname + "-packages-bucket-"):
 		subprocess.call(['aws', 's3api', 'delete-bucket', '--bucket', bucket["Name"], "--region", region])
 
+print "Deleting hosted zones"
+j = json.loads(subprocess.check_output(["aws", "route53", "list-hosted-zones", "--region", region]))
+for zone in j["HostedZones"]:
+	if zone["Name"].startswith(envname + ".") and zone["CallerReference"].startswith("terraform-"):
+		j2 = json.loads(subprocess.check_output(['aws', 'route53', 'list-resource-record-sets', '--hosted-zone-id', zone["Id"], "--region", region]))
+		for record in j2["ResourceRecordSets"]:
+			if record["Type"] == "A":
+				subprocess.call(['aws', 'route53', 'change-resource-record-sets', '--hosted-zone-id', zone["Id"], "--change-batch", "{\"Changes\": [{\"Action\":\"DELETE\",\"ResourceRecordSet\":" + json.dumps(record) + "}]}", "--region", region])
+		subprocess.call(['aws', 'route53', 'delete-hosted-zone', '--id', zone["Id"], "--region", region])
+
 print "Deleting VPCs"
 j = json.loads(subprocess.check_output(["aws", "ec2", "describe-vpcs", "--filters", "Name=tag:Environment,Values=" + envname, "--region", region]))
 for subnet in j["Vpcs"]:
